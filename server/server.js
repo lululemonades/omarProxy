@@ -6,21 +6,24 @@ const port = process.env.PORT || 3000;
 const request = require('request');
 
 app.use(bodyParser.json());
+app.use('/:id', express.static('public'));
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.listen(port, () => {
   console.log(`server running at: http://localhost:${port}`);
 });
 
+
+
 app.get('/productDetails/:id', (req, res) => {
-  request(`http://localhost:3001${req.url}`, (error, response, body) => {
+  request(`http://18.219.25.187${req.url}`, (error, response, body) => {
     if (error) throw new Error(error);
     res.end(body);
   });
 });
 
 app.put('/reviews-module/reviews', (req, res) => {
-  axios.put(`http://localhost:3002${req.url}`, req.body)
+  axios.put(`http://54.183.143.240${req.url}`, req.body)
     .then(() => {
       res.status(204).end();
     })
@@ -29,23 +32,22 @@ app.put('/reviews-module/reviews', (req, res) => {
     });
 });
 
-app.get('/reviews/:id', (req, res) => {
-  console.log(`http://localhost:3002${req.url}`);
-  request(`http://localhost:3002${req.url}`, (error, response, body) => {
+app.get('/reviews-module/reviews/:id', (req, res) => {
+  request(`http://54.183.143.240${req.url}`, (error, response, body) => {
     if (error) throw new Error(error);
     res.end(body);
   });
 });
 
 app.get('/youMayAlsoLike/:id', (req, res) => {
-  request(`http://localhost:3003${req.url}`, (error, response, body) => {
+  request(`http://18.188.58.255${req.url}`, (error, response, body) => {
     if (error) throw new Error(error);
     res.end(body);
   });
 });
 
-app.get('/products/:id/images', (req, res) => {
-  request(`http://localhost:3004${req.url}`, (error, response, body) => {
+app.get('/images/:id', (req, res) => {
+  request(`http://138.197.208.221${req.url}`, (error, response, body) => {
     if (error) throw new Error(error);
     res.end(body);
   });  
